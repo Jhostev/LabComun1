@@ -1,0 +1,47 @@
+id: Punto_1
+label: QT GUI EnvolventeComplejaPM
+category: '[ModulosJ1A]'
+flags: need_qt_gui
+
+parameters:
+-   id: Ac
+    label: Amplitud de portadora
+    dtype: real
+    default: 100e-3
+    hide: none
+-   id: Kp
+    label: Coeficiente modulacion PM
+    dtype: real
+    default: '1'
+    hide: none
+-   id: gui_hint
+    label: GUI Hint
+    dtype: gui_hint
+    hide: part
+
+inputs:
+-   label: in
+    dtype: float
+    vlen: 1
+
+outputs:
+-   label: out
+    dtype: complex
+    vlen: 1
+
+templates:
+    imports: 'from Punto_1 import Punto_1  # grc-generated hier_block'
+    make: "Punto_1(\n    Ac=${ Ac },\n    Kp=${ Kp },\n)\n<% win = 'self.%s'%id %>\n\
+        ${ gui_hint() % win }"
+    callbacks:
+    - set_Ac(${ Ac })
+    - set_Kp(${ Kp })
+
+documentation: 'Grupo01
+
+    Modulacion Angular
+
+    /home/labcom/Documentos/lab4/Punto_1.py'
+grc_source: /home/labcom/Documentos/lab4/Punto_1.grc
+
+file_format: 1
